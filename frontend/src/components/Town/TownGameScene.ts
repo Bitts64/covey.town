@@ -421,7 +421,7 @@ export default class TownGameScene extends Phaser.Scene {
         font: '18px monospace',
         color: '#000000',
         // padding: {x: 20, y: 10},
-        backgroundColor: '#90EE90FF',
+        backgroundColor: '#90EE90',
       })
       .setDepth(6);
     this.coveyTownController.ourPlayer.gameObjects = {
@@ -529,7 +529,7 @@ export default class TownGameScene extends Phaser.Scene {
           font: '18px monospace',
           color: '#000000',
           // padding: {x: 20, y: 10},
-          backgroundColor: '#90EE90',
+          backgroundColor: '#ffffff',
         },
       );
       player.gameObjects = {
