@@ -11,7 +11,7 @@ import { GameMove, TicTacToeGameState, TicTacToeMove } from '../../types/CoveyTo
 import Game from './Game';
 
 /**
- * A TicTacToeGame is a Game that implements the rules of Tic Tac Toe.
+ * A TicTacToeGame is a Game that implements the rules of Tic-Tac-Toe.
  * @see https://en.wikipedia.org/wiki/Tic-tac-toe
  */
 export default class TicTacToeGame extends Game<TicTacToeGameState, TicTacToeMove> {
