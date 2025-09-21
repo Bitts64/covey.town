@@ -13,10 +13,10 @@ import InvalidParametersError, {
 } from '../../lib/InvalidParametersError';
 
 /**
- * A QuantumTicTacToeGame is a Game that implements the rules of the Tic-Tac-Toe variant described 
- * at https://www.smbc-comics.com/comic/tic.
+ * A QuantumTicTacToeGame is a Game that implements the rules of the Tic-Tac-Toe variant described
+ * at https://www.smbc-comics.com/comic/tic
  * This class acts as a controller for three underlying TicTacToeGame instances, orchestrating the "quantum" rules by taking
- * the role of the monitor.
+ * the role of the monitor
  */
 export default class QuantumTicTacToeGame extends Game<
   QuantumTicTacToeGameState,
@@ -51,7 +51,11 @@ export default class QuantumTicTacToeGame extends Game<
       C: new TicTacToeGame(),
     };
   }
-  // Copied from base TicTacToeGame class and modified to fit the 
+
+  /*
+    Adapted from base TicTacToeGame class
+    Attempt to join a game
+   */
   protected _join(player: Player): void {
     if (this.state.x === player.id || this.state.o === player.id) {
       throw new InvalidParametersError(PLAYER_ALREADY_IN_GAME_MESSAGE);
@@ -77,7 +81,10 @@ export default class QuantumTicTacToeGame extends Game<
     }
   }
 
-  // Core logic adapted from the tic-tac-toe superclass's counterpart for this method.
+  /* 
+  Core logic adapted from the tic-tac-toe superclass's counterpart for this method.
+
+  */
   protected _leave(player: Player): void {
     if (this.state.x !== player.id && this.state.o !== player.id) {
       throw new InvalidParametersError(PLAYER_NOT_IN_GAME_MESSAGE);
@@ -123,9 +130,7 @@ export default class QuantumTicTacToeGame extends Game<
 
   public applyMove(move: GameMove<QuantumTicTacToeMove>): void {
     this._validateMove(move);
-
-    
-
+    // TODO: Implement the guts
     this._checkForWins();
     this._checkForGameEnding();
   }
