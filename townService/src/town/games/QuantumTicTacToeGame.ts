@@ -6,9 +6,15 @@ import {
 import Game from './Game';
 import TicTacToeGame from './TicTacToeGame';
 import Player from '../../lib/Player';
+import InvalidParametersError, {
+  PLAYER_ALREADY_IN_GAME_MESSAGE,
+  PLAYER_NOT_IN_GAME_MESSAGE,
+  GAME_FULL_MESSAGE,
+} from '../../lib/InvalidParametersError';
 
 /**
- * A QuantumTicTacToeGame is a Game that implements the rules of the Tic-Tac-Toe variant described at https://www.smbc-comics.com/comic/tic.
+ * A QuantumTicTacToeGame is a Game that implements the rules of the Tic-Tac-Toe variant described 
+ * at https://www.smbc-comics.com/comic/tic.
  * This class acts as a controller for three underlying TicTacToeGame instances, orchestrating the "quantum" rules by taking
  * the role of the monitor.
  */
@@ -18,22 +24,92 @@ export default class QuantumTicTacToeGame extends Game<
 > {
   private _games: { A: TicTacToeGame; B: TicTacToeGame; C: TicTacToeGame };
 
+  private _moveCount: number;
+
   private _xScore: number;
 
   private _oScore: number;
 
-  private _moveCount: number;
-
   public constructor() {
-    // TODO: implement me
+    super({
+      xScore: 0,
+      oScore: 0,
+      publiclyVisible: {
+        A: [],
+        B: [],
+        C: [],
+      },
+      status: 'WAITING_TO_START',
+      moves: [],
+    });
+    this._xScore = 0;
+    this._oScore = 0;
+    this._moveCount = 0;
+    this._games = {
+      A: new TicTacToeGame(),
+      B: new TicTacToeGame(),
+      C: new TicTacToeGame(),
+    };
   }
-
+  // Copied from base TicTacToeGame class and modified to fit the 
   protected _join(player: Player): void {
-    // TODO: implement me
+    if (this.state.x === player.id || this.state.o === player.id) {
+      throw new InvalidParametersError(PLAYER_ALREADY_IN_GAME_MESSAGE);
+    }
+    if (!this.state.x) {
+      this.state = {
+        ...this.state,
+        x: player.id,
+      };
+    } else if (!this.state.o) {
+      this.state = {
+        ...this.state,
+        o: player.id,
+      };
+    } else {
+      throw new InvalidParametersError(GAME_FULL_MESSAGE);
+    }
+    if (this.state.x && this.state.o) {
+      this.state = {
+        ...this.state,
+        status: 'IN_PROGRESS',
+      };
+    }
   }
 
+  // Core logic adapted from the tic-tac-toe superclass's counterpart for this method.
   protected _leave(player: Player): void {
-    // TODO: implement me
+    if (this.state.x !== player.id && this.state.o !== player.id) {
+      throw new InvalidParametersError(PLAYER_NOT_IN_GAME_MESSAGE);
+    }
+    // Handles case where the game has not started yet
+    if (this.state.o === undefined) {
+      this.state = {
+        xScore: 0,
+        oScore: 0,
+        publiclyVisible: {
+          A: [],
+          B: [],
+          C: [],
+        },
+        status: 'WAITING_TO_START',
+        moves: [],
+      };
+      return;
+    }
+    if (this.state.x === player.id) {
+      this.state = {
+        ...this.state,
+        status: 'OVER',
+        winner: this.state.o,
+      };
+    } else {
+      this.state = {
+        ...this.state,
+        status: 'OVER',
+        winner: this.state.x,
+      };
+    }
   }
 
   /**
@@ -48,7 +124,7 @@ export default class QuantumTicTacToeGame extends Game<
   public applyMove(move: GameMove<QuantumTicTacToeMove>): void {
     this._validateMove(move);
 
-    // TODO: implement the guts of this method
+    
 
     this._checkForWins();
     this._checkForGameEnding();
