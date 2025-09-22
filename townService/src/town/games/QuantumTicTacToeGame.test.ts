@@ -2,6 +2,7 @@ import { createPlayerForTesting } from '../../TestUtils';
 import Player from '../../lib/Player';
 import { GameMove } from '../../types/CoveyTownSocket';
 import QuantumTicTacToeGame from './QuantumTicTacToeGame';
+// import TicTacToeGame from './TicTacToeGame';
 
 describe('QuantumTicTacToeGame', () => {
   let game: QuantumTicTacToeGame;
@@ -12,6 +13,46 @@ describe('QuantumTicTacToeGame', () => {
     game = new QuantumTicTacToeGame();
     player1 = createPlayerForTesting();
     player2 = createPlayerForTesting();
+  });
+
+  describe('constructor', () => {
+    /* Count intializaton test created using GitHub Copilot (GPT-4.1) 
+      Prompt: "I want to create a test to ensure that xScore, oScore, 
+      and moveCount are properly initialized as zero."
+      Checks that xScore, oScore, and moveCount are properly initialized as zero 
+    */
+    it('should initialize xScore, oScore, and moveCount to zero', () => {
+      expect(game.state.xScore).toBe(0);
+      expect(game.state.oScore).toBe(0);
+      // @ts-expect-error - private property
+      expect(game._moveCount).toBe(0);
+    });
+
+    it('should initialize three empty game boards, and ensure no squares are visible to begin with.', () => {
+      expect(game.state.publiclyVisible).toEqual({
+        A: [
+          [false, false, false],
+          [false, false, false],
+          [false, false, false],
+        ],
+        B: [
+          [false, false, false],
+          [false, false, false],
+          [false, false, false],
+        ],
+        C: [
+          [false, false, false],
+          [false, false, false],
+          [false, false, false],
+        ],
+      });
+      expect(game.state.moves).toEqual([]);
+      // Expect-error below from GitHub Copilot.
+      // @ts-expect-error - private property of game
+      expect(game._games).toBeDefined();
+      // @ts-expect-error - private property of game
+      expect(game._games.A.board).toBe();
+    });
   });
 
   describe('_join', () => {

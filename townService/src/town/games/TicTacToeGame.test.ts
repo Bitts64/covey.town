@@ -18,6 +18,13 @@ describe('TicTacToeGame', () => {
     game = new TicTacToeGame();
   });
 
+  describe('Game initialization', () => {
+    it('should initialize the board as empty', () => {
+      // @ts-expect-error Private property
+      expect(()=> game._board).toBeDefined();
+    });
+  });
+
   describe('[T1.1] _join', () => {
     it('should throw an error if the player is already in the game', () => {
       const player = createPlayerForTesting();

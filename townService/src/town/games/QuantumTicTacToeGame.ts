@@ -10,6 +10,9 @@ import InvalidParametersError, {
   PLAYER_ALREADY_IN_GAME_MESSAGE,
   PLAYER_NOT_IN_GAME_MESSAGE,
   GAME_FULL_MESSAGE,
+  GAME_NOT_IN_PROGRESS_MESSAGE,
+  BOARD_POSITION_NOT_EMPTY_MESSAGE,
+  MOVE_NOT_YOUR_TURN_MESSAGE,
 } from '../../lib/InvalidParametersError';
 
 /**
@@ -35,9 +38,21 @@ export default class QuantumTicTacToeGame extends Game<
       xScore: 0,
       oScore: 0,
       publiclyVisible: {
-        A: [],
-        B: [],
-        C: [],
+        A: [
+          [false, false, false],
+          [false, false, false],
+          [false, false, false],
+        ],
+        B: [
+          [false, false, false],
+          [false, false, false],
+          [false, false, false],
+        ],
+        C: [
+          [false, false, false],
+          [false, false, false],
+          [false, false, false],
+        ],
       },
       status: 'WAITING_TO_START',
       moves: [],
@@ -125,12 +140,30 @@ export default class QuantumTicTacToeGame extends Game<
    * @see TicTacToeGame#_validateMove
    */
   private _validateMove(move: GameMove<QuantumTicTacToeMove>): void {
-    // TODO: implement me
+    // A move is valid if the space is empty
+    for (const m of this.state.moves) {
+      if (m.col === move.move.col && m.row === move.move.row) {
+        throw new InvalidParametersError(BOARD_POSITION_NOT_EMPTY_MESSAGE);
+
+      }
+    }
+
+    // A move is only valid if it is the player's turn
+    if (move.move.gamePiece === 'X' && this.state.moves.length % 2 === 1) {
+      throw new InvalidParametersError(MOVE_NOT_YOUR_TURN_MESSAGE);
+    } else if (move.move.gamePiece === 'O' && this.state.moves.length % 2 === 0) {
+      throw new InvalidParametersError(MOVE_NOT_YOUR_TURN_MESSAGE);
+    }
+    // A move is valid only if game is in progress
+    if (this.state.status !== 'IN_PROGRESS') {
+      throw new InvalidParametersError(GAME_NOT_IN_PROGRESS_MESSAGE);
+    }
+    // TODO: Implement the rest of me
   }
 
   public applyMove(move: GameMove<QuantumTicTacToeMove>): void {
     this._validateMove(move);
-    // TODO: Implement the guts
+    // move.
     this._checkForWins();
     this._checkForGameEnding();
   }

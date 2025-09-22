@@ -59,6 +59,7 @@ export default class QuantumTicTacToeGameArea extends GameArea<QuantumTicTacToeG
   ): InteractableCommandReturnType<CommandType> {
     // TODO: implement this based on the similar method in TicTacToeGameArea
     // I think I'll need the _stateUpdated helper method, above.
+
     throw new InvalidParametersError(INVALID_COMMAND_MESSAGE);
   }
 }
