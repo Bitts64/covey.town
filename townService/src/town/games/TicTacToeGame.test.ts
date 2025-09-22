@@ -21,7 +21,7 @@ describe('TicTacToeGame', () => {
   describe('Game initialization', () => {
     it('should initialize the board as empty', () => {
       // @ts-expect-error Private property
-      expect(()=> game._board).toBeDefined();
+      expect(() => game._board).toBeDefined();
     });
   });
 

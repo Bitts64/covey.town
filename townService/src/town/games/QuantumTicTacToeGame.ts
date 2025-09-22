@@ -144,7 +144,6 @@ export default class QuantumTicTacToeGame extends Game<
     for (const m of this.state.moves) {
       if (m.col === move.move.col && m.row === move.move.row) {
         throw new InvalidParametersError(BOARD_POSITION_NOT_EMPTY_MESSAGE);
-
       }
     }
 
@@ -163,7 +162,7 @@ export default class QuantumTicTacToeGame extends Game<
 
   public applyMove(move: GameMove<QuantumTicTacToeMove>): void {
     this._validateMove(move);
-    // move.
+    move
     this._checkForWins();
     this._checkForGameEnding();
   }
