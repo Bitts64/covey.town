@@ -160,9 +160,31 @@ export default class QuantumTicTacToeGame extends Game<
     // TODO: Implement the rest of me
   }
 
+  //
   public applyMove(move: GameMove<QuantumTicTacToeMove>): void {
+    const currBoard = move.move.board;
+    // The following state assignment was copied from TicTacToeGame.ts
+    this.state = {
+      ...this.state,
+      moves: [...this.state.moves, move.move],
+    };
     this._validateMove(move);
-    move
+
+    // const piece = move.move.gamePiece;
+    switch (currBoard) {
+      case 'A':
+        this._games.A.applyMove(move);
+        break;
+      case 'B':
+        this._games.B.applyMove(move);
+        break;
+      case 'C':
+        this._games.C.applyMove(move);
+        break;
+      default:
+        break;
+    }
+    this._moveCount++;
     this._checkForWins();
     this._checkForGameEnding();
   }
@@ -170,9 +192,21 @@ export default class QuantumTicTacToeGame extends Game<
   /**
    * Checks all three sub-games for any new three-in-a-row conditions.
    * Awards points and marks boards as "won" so they can't be played on.
+   *
    */
   private _checkForWins(): void {
-    // TODO: implement me
+    const subGames = [this._games.A, this._games.B, this._games.C];
+
+    for (let el = 0; el < 3; el++) {
+      const currBoard = subGames[el];
+      if (currBoard.state.status === 'OVER') {
+        if (currBoard.state.winner === this.state.x) {
+          this.state.xScore++;
+        } else if (currBoard.state.winner === this.state.o) {
+          this.state.oScore++;
+        }
+      }
+    }
   }
 
   /**
@@ -180,6 +214,6 @@ export default class QuantumTicTacToeGame extends Game<
    * This happens when all squares on all boards are either occupied or part of a won board.
    */
   private _checkForGameEnding(): void {
-    // TODO: implement me
+    //TODO: implement me
   }
 }
