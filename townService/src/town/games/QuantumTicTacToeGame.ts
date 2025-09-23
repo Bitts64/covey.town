@@ -214,6 +214,6 @@ export default class QuantumTicTacToeGame extends Game<
    * This happens when all squares on all boards are either occupied or part of a won board.
    */
   private _checkForGameEnding(): void {
-    //TODO: implement me
+    // TODO: implement me
   }
 }
