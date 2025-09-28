@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { mock } from 'jest-mock-extended';
-import Player from '../../lib/Player';
+import Player from '../../../lib/Player';
 import {
   ConnectFourColor,
   ConnectFourGameState,
@@ -8,17 +8,17 @@ import {
   GameInstanceID,
   GameMove,
   TownEmitter,
-} from '../../types/CoveyTownSocket';
+} from '../../../types/CoveyTownSocket';
 import ConnectFourGame from './ConnectFourGame';
 import ConnectFourGameArea from './ConnectFourGameArea';
 import * as ConnectFourGameModule from './ConnectFourGame';
-import Game from './Game';
-import { createPlayerForTesting } from '../../TestUtils';
+import Game from '../Game';
+import { createPlayerForTesting } from '../../../TestUtils';
 import {
   GAME_ID_MISSMATCH_MESSAGE,
   GAME_NOT_IN_PROGRESS_MESSAGE,
   INVALID_COMMAND_MESSAGE,
-} from '../../lib/InvalidParametersError';
+} from '../../../lib/InvalidParametersError';
 
 class TestingGame extends Game<ConnectFourGameState, ConnectFourMove> {
   public constructor(priorGame?: ConnectFourGame) {

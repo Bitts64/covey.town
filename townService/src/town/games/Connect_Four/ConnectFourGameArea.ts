@@ -2,17 +2,17 @@ import InvalidParametersError, {
   GAME_ID_MISSMATCH_MESSAGE,
   GAME_NOT_IN_PROGRESS_MESSAGE,
   INVALID_COMMAND_MESSAGE,
-} from '../../lib/InvalidParametersError';
-import Player from '../../lib/Player';
+} from '../../../lib/InvalidParametersError';
+import Player from '../../../lib/Player';
 import {
   ConnectFourGameState,
   GameInstance,
   InteractableCommand,
   InteractableCommandReturnType,
   InteractableType,
-} from '../../types/CoveyTownSocket';
+} from '../../../types/CoveyTownSocket';
 import ConnectFourGame from './ConnectFourGame';
-import GameArea from './GameArea';
+import GameArea from '../GameArea';
 
 /**
  * The ConnectFourGameArea class is responsible for managing the state of a single game area for Connect Four.

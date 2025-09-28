@@ -7,13 +7,13 @@ import {
   MOVE_NOT_YOUR_TURN_MESSAGE,
   PLAYER_ALREADY_IN_GAME_MESSAGE,
   PLAYER_NOT_IN_GAME_MESSAGE,
-} from '../../lib/InvalidParametersError';
-import { createPlayerForTesting } from '../../TestUtils';
+} from '../../../lib/InvalidParametersError';
+import { createPlayerForTesting } from '../../../TestUtils';
 import {
   ConnectFourColIndex,
   ConnectFourColor,
   ConnectFourRowIndex,
-} from '../../types/CoveyTownSocket';
+} from '../../../types/CoveyTownSocket';
 import ConnectFourGame from './ConnectFourGame';
 
 type ConnectFourPattern = ('Y' | 'R' | '_')[][];

@@ -6,16 +6,16 @@ import InvalidParametersError, {
   MOVE_NOT_YOUR_TURN_MESSAGE,
   PLAYER_ALREADY_IN_GAME_MESSAGE,
   PLAYER_NOT_IN_GAME_MESSAGE,
-} from '../../lib/InvalidParametersError';
-import Player from '../../lib/Player';
+} from '../../../lib/InvalidParametersError';
+import Player from '../../../lib/Player';
 import {
   ConnectFourColor,
   ConnectFourGameState,
   ConnectFourMove,
   GameMove,
   PlayerID,
-} from '../../types/CoveyTownSocket';
-import Game from './Game';
+} from '../../../types/CoveyTownSocket';
+import Game from '../Game';
 
 function getOtherPlayerColor(color: ConnectFourColor): ConnectFourColor {
   if (color === 'Yellow') {
