@@ -502,7 +502,7 @@ export default class TownGameScene extends Phaser.Scene {
           x: 20,
           y: 10,
         },
-        backgroundColor: '#ffffff',
+        backgroundColor: '#FFFFFF',
       })
       .setScrollFactor(0)
       .setDepth(30);
