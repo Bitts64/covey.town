@@ -60,6 +60,16 @@ describe('ConnectFourGameArea', () => {
   const gameConstructorSpy = jest.spyOn(ConnectFourGameModule, 'default');
   let game: TestingGame;
 
+  // Snippet below written with assistance from GitHub Copilot code completion
+  test('getType should return ConnectFourArea', () => {
+    gameArea = new ConnectFourGameArea(
+      nanoid(),
+      { x: 0, y: 0, width: 100, height: 100 },
+      mock<TownEmitter>(),
+    );
+    expect((gameArea as any).getType()).toEqual('ConnectFourArea');
+  });
+
   beforeEach(() => {
     gameConstructorSpy.mockClear();
     game = new TestingGame();

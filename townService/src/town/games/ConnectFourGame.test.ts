@@ -1,4 +1,5 @@
 import { Console } from 'console';
+import e from 'express';
 import {
   BOARD_POSITION_NOT_VALID_MESSAGE,
   GAME_FULL_MESSAGE,
@@ -206,6 +207,14 @@ describe('ConnectFourGame', () => {
         expect(game.state.redReady).toBeFalsy();
         expect(game.state.yellowReady).toBeFalsy();
       });
+    });
+  });
+
+  // Snippet below written with assistance from GitHub Copilot code completion
+  describe('initial game state', () => {
+    it('should have the correct initial state of "Waiting to start"', () => {
+      const newGame = new ConnectFourGame();
+      expect(newGame.state.status).toBe('WAITING_FOR_PLAYERS');
     });
   });
   describe('[T1.2] _startGame', () => {
