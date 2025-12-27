@@ -1,5 +1,4 @@
 import { Console } from 'console';
-import e from 'express';
 import {
   BOARD_POSITION_NOT_VALID_MESSAGE,
   GAME_FULL_MESSAGE,
