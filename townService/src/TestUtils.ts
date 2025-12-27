@@ -2,7 +2,7 @@ import { BroadcastOperator } from 'socket.io';
 
 import { mock, mockDeep, MockProxy } from 'jest-mock-extended';
 import { nanoid } from 'nanoid';
-import { SocketReservedEventsMap } from 'socket.io/dist/socket';
+import { SocketReservedEventsMap } from 'socket.io/dist/socket-types';
 import {
   EventNames,
   EventParams,
@@ -130,7 +130,7 @@ export function getEventListener<
       >;
     }
   }
-  throw new Error(`No event listener found for event ${eventName}`);
+  throw new Error(`No event listener found for event ${String(eventName)}`);
 }
 
 export class MockedPlayer {
