@@ -14,7 +14,7 @@
     "url": "https://github.com/neu-se/covey.town/issues"
   },
   "engines": {
-    "node": "^22.0.0",
+    "node": "^22.0.0 | ^24.0.0",
     "npm": ">=10.0.0"
   },
   "homepage": "https://github.com/neu-se/covey.town#readme",
