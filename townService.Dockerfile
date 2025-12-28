@@ -1,4 +1,4 @@
-FROM node:18-bullseye-slim
+FROM node:22-trixie-slim
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./ /usr/src/app
