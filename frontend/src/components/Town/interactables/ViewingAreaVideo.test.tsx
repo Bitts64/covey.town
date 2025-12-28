@@ -12,6 +12,8 @@ import ViewingAreaController, {
 import TownControllerContext from '../../../contexts/TownControllerContext';
 import { ViewingAreaVideo } from './ViewingAreaVideo';
 
+jest.mock('react-player');
+
 // A sentinel value that we will render in the mock react player component to help find it in the DOM tree
 const MOCK_REACT_PLAYER_PLACEHOLDER = 'MOCK_REACT_PLAYER_PLACEHOLER';
 // Mocking a React class-based component appears to be quite challenging; we define our own class
